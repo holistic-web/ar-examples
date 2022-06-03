@@ -12,4 +12,7 @@ module.exports = {
   plugins: [],
   // add your custom rules here
   rules: {},
+  globals: {
+    AFRAME: true,
+  },
 }

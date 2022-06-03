@@ -1,9 +1,35 @@
 <template>
-  <Tutorial />
+  <TapToPlace />
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'HomePage',
 }
 </script>
+
+<style lang="scss">
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+
+button {
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  background-color: #7611b6;
+  color: white;
+  max-width: 100%;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px 10px 15px;
+  font-family: Helvetica, sans-serif;
+}
+</style>
