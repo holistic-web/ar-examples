@@ -38,6 +38,9 @@ jobs:
       - name: Run linter 👀
         run: npm run lint
 
+      - name: Generate static site 🛠️
+        run: npm run generate
+
       - name: Deploy to firebase 🚀
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
