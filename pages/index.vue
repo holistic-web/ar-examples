@@ -1,5 +1,6 @@
 <template>
-  <TapToPlace />
+  <!-- <TapToPlace /> -->
+  <MenuLanding />
 </template>
 
 <script>
