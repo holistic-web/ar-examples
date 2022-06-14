@@ -3,7 +3,7 @@
     <!-- Add the menu component to the scene so it has an effect -->
     <a-scene
       v-pre
-      menu-landing
+      bird
       landing-page
       xrextras-loading
       xrextras-runtime-error
@@ -24,6 +24,7 @@
 
         <!-- Menu item assets -->
         <a-asset-item id="cactusModel" v-pre src="/cactus.glb"></a-asset-item>
+        <a-asset-item id="birdModel" src="/scene.gltf"></a-asset-item>
       </a-assets>
 
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
@@ -83,17 +84,25 @@
 </template>
 
 <script>
-const menuLandingComponent = {
+const birdComponent = {
   init() {
-    // TODO: implement initialisation script
-    const ground = document.getElementById('ground')
-    ground.addEventListener('click', (event) => {
-      console.log('click')
-      // Create new entity for the new object
-      // The raycaster gives a location of the touch in the scene
-      const touchPoint = event.detail.intersection.point
-      console.log('touchPoint: ', JSON.stringify(touchPoint))
-    })
+    for (let i = 0; i < 5; i++) {
+      const entity = document.createElement('a-entity')
+      const randomYRotation = Math.random() * 360
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * max)
+      }
+      entity.setAttribute('id', `bird${i}`)
+      entity.setAttribute('gltf-model', '#birdModel')
+      entity.setAttribute(
+        'position',
+        `${getRandomInt(20)} ${getRandomInt(20)} ${getRandomInt(30) * -1}`
+      )
+      entity.setAttribute('rotation', `0 ${randomYRotation} 0`)
+      entity.setAttribute('scale', `0.005 0.005 0.005`)
+      entity.setAttribute('shadow', 'receive: false')
+      this.el.sceneEl.appendChild(entity)
+    }
   },
 }
 
@@ -126,7 +135,7 @@ export default {
   },
   methods: {
     on8thWallReady() {
-      AFRAME.registerComponent('menu-landing', menuLandingComponent)
+      AFRAME.registerComponent('bird', birdComponent)
     },
   },
 }

@@ -42,7 +42,7 @@
 
       <a-entity
         id="model"
-        gltf-model="#birdModel"
+        :gltf-model="`${require('../static/scene.gltf')}`"
         animation-mixer
         class="cantap"
         xrextras-hold-drag
