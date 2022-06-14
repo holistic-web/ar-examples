@@ -92,11 +92,14 @@ const birdComponent = {
       function getRandomInt(max) {
         return Math.floor(Math.random() * max)
       }
+      const randomX =
+        Math.ceil(Math.random() * 20) * (Math.round(Math.random()) ? 1 : -1)
       entity.setAttribute('id', `bird${i}`)
       entity.setAttribute('gltf-model', '#birdModel')
+      entity.setAttribute('animation-mixer', 'clip: Fly;')
       entity.setAttribute(
         'position',
-        `${getRandomInt(20)} ${getRandomInt(20)} ${getRandomInt(30) * -1}`
+        `${randomX} ${getRandomInt(20)} ${getRandomInt(30) * -1}`
       )
       entity.setAttribute('rotation', `0 ${randomYRotation} 0`)
       entity.setAttribute('scale', `0.005 0.005 0.005`)
@@ -122,6 +125,8 @@ export default {
         // XR Extras - provides utilities like load screen, almost there, and error handling.
         // See github.com/8thwall/web/tree/master/xrextras
         { src: '//cdn.8thwall.com/web/xrextras/xrextras.js' },
+        // Add extras from aframe for animations
+        { src: '//cdn.8thwall.com/web/aframe/aframe-extras-6.1.1.min.js' },
 
         // 8thWall Web - Replace the app key here with your own app key (only works on authorised domains)
         {
