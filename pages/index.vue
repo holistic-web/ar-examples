@@ -1,6 +1,7 @@
 <template>
   <!-- <TapToPlace /> -->
-  <MenuLanding />
+  <FlyingBird />
+  <!-- <MenuLanding /> -->
 </template>
 
 <script>
