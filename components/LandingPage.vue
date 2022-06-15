@@ -3,7 +3,6 @@
     <!-- Add the menu component to the scene so it has an effect -->
     <a-scene
       v-pre
-      bird
       landing-page
       xrextras-loading
       xrextras-runtime-error
@@ -84,9 +83,20 @@
 </template>
 
 <script>
-const birdComponent = {
+const MENU_ITEMS = [
+  {
+    name: 'Cactus',
+    model: 'cactusModel',
+  },
+  {
+    name: 'Bird',
+    model: 'birdModel',
+  },
+]
+
+const landingPageComponent = {
   init() {
-    for (let i = 0; i < 5; i++) {
+    MENU_ITEMS.forEach((item, i) => {
       const entity = document.createElement('a-entity')
       const randomYRotation = Math.random() * 360
       function getRandomInt(max) {
@@ -105,18 +115,18 @@ const birdComponent = {
       entity.setAttribute('scale', `0.005 0.005 0.005`)
       entity.setAttribute('shadow', 'receive: false')
       this.el.sceneEl.appendChild(entity)
-    }
+    })
   },
 }
 
 export default {
-  name: 'MenuLanding',
+  name: 'LandingPage',
   mounted() {
     this.on8thWallReady()
   },
   methods: {
     on8thWallReady() {
-      AFRAME.registerComponent('bird', birdComponent)
+      AFRAME.registerComponent('landing-page', landingPageComponent)
     },
   },
 }
