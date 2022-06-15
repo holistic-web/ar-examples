@@ -18,6 +18,9 @@
   defaultEnvironmentSkyTopColor: #5ac8fa;
   defaultEnvironmentSkyGradientStrength: 0.5;"
     >
+      <!-- TODO add this back arrow -->
+      <!-- <img id="backButton" src="../assets/back-arrow.svg" /> -->
+
       <!-- We can define assets here to be loaded when A-Frame initializes -->
       <a-assets v-pre>
         <img id="groundTex" src="/sand.jpg" />
@@ -153,5 +156,14 @@ a-scene {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+#backButton {
+  position: absolute;
+  z-index: 5;
+  left: 1vh;
+  top: 1vh;
+  max-width: 12vw;
+  height: 50px;
 }
 </style>
