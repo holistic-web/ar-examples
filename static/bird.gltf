@@ -10147,7 +10147,7 @@
           }
         }
       ],
-      "name": "Fly",
+      "name": "flap-wings",
       "samplers": [
         {
           "input": 13,
@@ -11551,21 +11551,21 @@
   "buffers": [
     {
       "byteLength": 710936,
-      "uri": "scene.bin"
+      "uri": "bird.bin"
     }
   ],
   "images": [
     {
-      "uri": "textures/MatI_Ride_FengHuang_01a_baseColor.png"
+      "uri": "bird_textures/MatI_Ride_FengHuang_01a_baseColor.png"
     },
     {
-      "uri": "textures/MatI_Ride_FengHuang_01a_emissive.png"
+      "uri": "bird_textures/MatI_Ride_FengHuang_01a_emissive.png"
     },
     {
-      "uri": "textures/MatI_Ride_FengHuang_01b_baseColor.png"
+      "uri": "bird_textures/MatI_Ride_FengHuang_01b_baseColor.png"
     },
     {
-      "uri": "textures/MatI_Ride_FengHuang_01b_emissive.png"
+      "uri": "bird_textures/MatI_Ride_FengHuang_01b_emissive.png"
     }
   ],
   "materials": [
