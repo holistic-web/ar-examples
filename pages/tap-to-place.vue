@@ -18,6 +18,9 @@
   defaultEnvironmentSkyTopColor: #5ac8fa;
   defaultEnvironmentSkyGradientStrength: 0.5;"
     >
+      <!-- TODO add this back arrow -->
+      <!-- <img id="backButton" src="../assets/back-arrow.svg" /> -->
+
       <!-- We can define assets here to be loaded when A-Frame initializes -->
       <a-assets v-pre>
         <img id="groundTex" src="/sand.jpg" />
@@ -75,12 +78,9 @@ const tapPlaceComponent = {
     max: { default: 10 },
   },
   init() {
-    console.log('init')
     const ground = document.getElementById('ground')
     ground.background = 'green'
-    console.log('ground: ', ground)
     ground.addEventListener('click', (event) => {
-      console.log('click')
       // Create new entity for the new object
       const newElement = document.createElement('a-entity')
       // The raycaster gives a location of the touch in the scene
@@ -112,12 +112,8 @@ const tapPlaceComponent = {
     })
   },
 }
-
 export default {
   name: 'TapToPlace',
-  data: () => ({
-    isLoaded: false,
-  }),
 
   head() {
     return {
@@ -132,6 +128,8 @@ export default {
         // XR Extras - provides utilities like load screen, almost there, and error handling.
         // See github.com/8thwall/web/tree/master/xrextras
         { src: '//cdn.8thwall.com/web/xrextras/xrextras.js' },
+        // Add extras from aframe for animations
+        { src: '//cdn.8thwall.com/web/aframe/aframe-extras-6.1.1.min.js' },
 
         // 8thWall Web - Replace the app key here with your own app key (only works on authorised domains)
         {
@@ -158,5 +156,14 @@ a-scene {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+#backButton {
+  position: absolute;
+  z-index: 5;
+  left: 1vh;
+  top: 1vh;
+  max-width: 12vw;
+  height: 50px;
 }
 </style>
