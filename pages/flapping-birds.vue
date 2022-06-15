@@ -1,9 +1,9 @@
 <template>
   <client-only>
-    <!-- Add landing-page attribute to the scene  -->
+    <!-- Add the menu component to the scene so it has an effect -->
     <a-scene
       v-pre
-      landing-page
+      flapping-birds
       xrextras-loading
       xrextras-runtime-error
       renderer="colorManagement:true"
@@ -11,7 +11,9 @@
       xrweb
     >
       <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets id="menuAssets" v-pre />
+      <a-assets v-pre>
+        <a-asset-item id="birdModel" src="/bird.gltf" />
+      </a-assets>
 
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
       <a-camera
@@ -46,82 +48,32 @@
 </template>
 
 <script>
-const MENU_DEPTH = -10
-const MENU_WIDTH = 10
-
-const MENU_ITEMS = [
-  {
-    name: 'tap-to-place',
-    src: '/cactus.glb',
-    scale: '7 7 7',
-  },
-  {
-    name: 'flapping-birds',
-    src: '/bird.gltf',
-    scale: '0.01 0.01 0.01',
-    animations: ['clip: flap-wings;'],
-  },
-]
-
-const landingPageComponent = {
+const flappingBirdsComponent = {
   init() {
-    const assets = document.getElementById('menuAssets')
-    MENU_ITEMS.forEach((item, i) => {
-      // add asset
-      const asset = document.createElement('a-asset-item')
-      asset.setAttribute('id', `${item.name}-asset`)
-      asset.setAttribute('src', item.src)
-      assets.appendChild(asset)
-
-      // set attributes
+    for (let i = 0; i < 5; i++) {
       const entity = document.createElement('a-entity')
-      const attributes = {
-        id: `menu-item-${i}`,
-        'gltf-model': `#${item.name}-asset`,
-        scale: '0.0001 0.0001 0.0001',
-        shadow: { receive: false },
-        position: `${
-          i % 2 === 0 ? -MENU_WIDTH / 2 : MENU_WIDTH / 2
-        } 0 ${MENU_DEPTH}`,
-        class: 'cantap',
-        visible: false,
+      const randomYRotation = Math.random() * 360
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * max)
       }
-      Object.keys(attributes).forEach((key) => {
-        entity.setAttribute(key, attributes[key])
-      })
-
-      // set event handlers
-      function onModelLoaded() {
-        entity.setAttribute('visible', true)
-        entity.setAttribute('animation', {
-          property: 'scale',
-          duration: 800,
-          easing: 'easeOutElastic',
-          to: item.scale,
-        })
-      }
-      function onItemMouseDown() {
-        if (item.animations) {
-          entity.setAttribute('animation-mixer', item.animations.join())
-        }
-      }
-      function onItemMouseUp() {
-        entity.removeAttribute('animation-mixer')
-        window.location.pathname = `/${item.name}`
-      }
-      entity.addEventListener('model-loaded', onModelLoaded)
-      entity.addEventListener('mousedown', onItemMouseDown)
-      entity.addEventListener('mouseup', onItemMouseUp)
-
-      // add the element to the scene
+      const randomX =
+        Math.ceil(Math.random() * 20) * (Math.round(Math.random()) ? 1 : -1)
+      entity.setAttribute('id', `bird${i}`)
+      entity.setAttribute('gltf-model', '#birdModel')
+      entity.setAttribute('animation-mixer', 'clip: flap-wings;')
+      entity.setAttribute(
+        'position',
+        `${randomX} ${getRandomInt(20)} ${getRandomInt(30) * -1}`
+      )
+      entity.setAttribute('rotation', `0 ${randomYRotation} 0`)
+      entity.setAttribute('scale', `0.005 0.005 0.005`)
+      entity.setAttribute('shadow', 'receive: false')
       this.el.sceneEl.appendChild(entity)
-    })
+    }
   },
 }
-
 export default {
-  name: 'LandingPage',
-
+  name: 'FlappingBirds',
   head() {
     return {
       // Scripts required by the 8th Wall Framework
@@ -131,13 +83,11 @@ export default {
         {
           src: '//cdn.8thwall.com/web/aframe/aframe-physics-system-4.0.1.min.js',
         },
-
         // XR Extras - provides utilities like load screen, almost there, and error handling.
         // See github.com/8thwall/web/tree/master/xrextras
         { src: '//cdn.8thwall.com/web/xrextras/xrextras.js' },
         // Add extras from aframe for animations
         { src: '//cdn.8thwall.com/web/aframe/aframe-extras-6.1.1.min.js' },
-
         // 8thWall Web - Replace the app key here with your own app key (only works on authorised domains)
         {
           src: '//apps.8thwall.com/xrweb?appKey=zl9iYLs0UnM13G8kugSsXRboJtbC2OJOZWmGeV4dvmWAKMaq1kwdRIa4PTdy4WvWyR05BG',
@@ -150,7 +100,7 @@ export default {
   },
   methods: {
     on8thWallReady() {
-      AFRAME.registerComponent('landing-page', landingPageComponent)
+      AFRAME.registerComponent('flapping-birds', flappingBirdsComponent)
     },
   },
 }
@@ -164,4 +114,3 @@ a-scene {
   right: 0;
   bottom: 0;
 }
-</style>
