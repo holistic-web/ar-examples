@@ -1,126 +1,37 @@
 <template>
-  <client-only>
-    <!-- Add landing-page attribute to the scene  -->
-    <a-scene
-      v-pre
-      landing-page
-      xrextras-loading
-      xrextras-runtime-error
-      renderer="colorManagement:true"
-      vr-mode-ui="enabled: false"
-      xrweb
-    >
-      <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets id="menuAssets" v-pre />
+  <div id="landingPage">
+    <floating-menu v-if="isMenuVisible" :menu-items="menuItems" />
 
-      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
-      <a-camera
-        id="camera"
-        v-pre
-        position="0 8 0"
-        raycaster="objects: .cantap"
-        cursor="
-    fuse: false;
-    rayOrigin: mouse;"
-      />
-      <a-entity
-        v-pre
-        light="
-    type: directional;
-    intensity: 0.8;
-    castShadow: true;
-    shadowMapHeight:2048;
-    shadowMapWidth:2048;
-    shadowCameraTop: 40;
-    shadowCameraBottom: -40;
-    shadowCameraRight: 40;
-    shadowCameraLeft: -40;
-    target: #camera"
-        xrextras-attach="target: camera; offset: 8 15 4"
-        position="1 4.3 2.5"
-        shadow
-      />
-      <a-light v-pre type="ambient" intensity="0.5" />
-    </a-scene>
-  </client-only>
+    <flapping-birds v-if="$route.query.show === 'flapping-birds'" />
+    <tap-to-place v-if="$route.query.show === 'tap-to-place'" />
+  </div>
 </template>
 
 <script>
-const MENU_DEPTH = -10
-const MENU_WIDTH = 10
-
-const MENU_ITEMS = [
-  {
-    name: 'tap-to-place',
-    src: '/cactus.glb',
-    scale: '7 7 7',
-  },
-  {
-    name: 'flapping-birds',
-    src: '/bird.gltf',
-    scale: '0.01 0.01 0.01',
-    animations: ['clip: flap-wings;'],
-  },
-]
-
-const landingPageComponent = {
-  init() {
-    const assets = document.getElementById('menuAssets')
-    MENU_ITEMS.forEach((item, i) => {
-      // add asset
-      const asset = document.createElement('a-asset-item')
-      asset.setAttribute('id', `${item.name}-asset`)
-      asset.setAttribute('src', item.src)
-      assets.appendChild(asset)
-
-      // set attributes
-      const entity = document.createElement('a-entity')
-      const attributes = {
-        id: `menu-item-${i}`,
-        'gltf-model': `#${item.name}-asset`,
-        scale: '0.0001 0.0001 0.0001',
-        shadow: { receive: false },
-        position: `${
-          i % 2 === 0 ? -MENU_WIDTH / 2 : MENU_WIDTH / 2
-        } 0 ${MENU_DEPTH}`,
-        class: 'cantap',
-        visible: false,
-      }
-      Object.keys(attributes).forEach((key) => {
-        entity.setAttribute(key, attributes[key])
-      })
-
-      // set event handlers
-      function onModelLoaded() {
-        entity.setAttribute('visible', true)
-        entity.setAttribute('animation', {
-          property: 'scale',
-          duration: 800,
-          easing: 'easeOutElastic',
-          to: item.scale,
-        })
-      }
-      function onItemMouseDown() {
-        if (item.animations) {
-          entity.setAttribute('animation-mixer', item.animations.join())
-        }
-      }
-      function onItemMouseUp() {
-        entity.removeAttribute('animation-mixer')
-        window.location.pathname = `/${item.name}`
-      }
-      entity.addEventListener('model-loaded', onModelLoaded)
-      entity.addEventListener('mousedown', onItemMouseDown)
-      entity.addEventListener('mouseup', onItemMouseUp)
-
-      // add the element to the scene
-      this.el.sceneEl.appendChild(entity)
-    })
-  },
-}
+import eventBus from '../lib/eventBus'
+import flappingBirds from '../components/FlappingBirds.vue'
 
 export default {
   name: 'LandingPage',
+  components: { flappingBirds },
+
+  data: () => ({
+    shownComponent: null,
+
+    menuItems: [
+      {
+        name: 'tap-to-place',
+        src: '/cactus.glb',
+        scale: '7 7 7',
+      },
+      {
+        name: 'flapping-birds',
+        src: '/bird.gltf',
+        scale: '0.01 0.01 0.01',
+        animations: ['clip: flap-wings;'],
+      },
+    ],
+  }),
 
   head() {
     return {
@@ -145,12 +56,20 @@ export default {
       ],
     }
   },
-  mounted() {
-    this.on8thWallReady()
+
+  computed: {
+    isMenuVisible() {
+      return !this.$route.query.show
+    },
   },
+
+  mounted() {
+    eventBus.$on('menu-item-clicked', this.onMenuItemClicked)
+  },
+
   methods: {
-    on8thWallReady() {
-      AFRAME.registerComponent('landing-page', landingPageComponent)
+    onMenuItemClicked(item) {
+      this.$router.push({ query: { show: item.name } })
     },
   },
 }
