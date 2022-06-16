@@ -9,11 +9,9 @@
 
 <script>
 import eventBus from '../lib/eventBus'
-import flappingBirds from '../components/FlappingBirds.vue'
 
 export default {
   name: 'LandingPage',
-  components: { flappingBirds },
 
   data: () => ({
     shownComponent: null,
@@ -64,11 +62,11 @@ export default {
   },
 
   mounted() {
-    eventBus.$on('menu-item-clicked', this.onMenuItemClicked)
+    eventBus.$on('menu-item-clicked', this.onMenuItemClick)
   },
 
   methods: {
-    onMenuItemClicked(item) {
+    onMenuItemClick(item) {
       this.$router.push({ query: { show: item.name } })
     },
   },
