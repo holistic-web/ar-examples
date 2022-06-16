@@ -1,8 +1,7 @@
 <template>
-  <client-only>
+  <client-only v-pre>
     <!-- Add the tap-place component to the scene so it has an effect -->
     <a-scene
-      v-pre
       tap-place
       xrextras-loading
       xrextras-runtime-error
@@ -21,23 +20,20 @@
       <!-- <img id="backButton" src="../assets/back-arrow.svg" /> -->
 
       <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets v-pre>
+      <a-assets>
         <img id="groundTex" src="/sand.jpg" />
-        <a-asset-item id="cactusModel" v-pre src="/cactus.glb"></a-asset-item>
+        <a-asset-item id="cactusModel" src="/cactus.glb"></a-asset-item>
       </a-assets>
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
       <a-camera
         id="camera"
-        v-pre
         position="0 8 0"
         raycaster="objects: .cantap"
         cursor="
     fuse: false;
     rayOrigin: mouse;"
-      >
-      </a-camera>
+      />
       <a-entity
-        v-pre
         light="
     type: directional;
     intensity: 0.8;
@@ -52,20 +48,17 @@
         xrextras-attach="target: camera; offset: 8 15 4"
         position="1 4.3 2.5"
         shadow
-      >
-      </a-entity>
-      <a-light v-pre type="ambient" intensity="0.5"></a-light>
+      />
+      <a-light type="ambient" intensity="0.5" />
       <!-- Adding the cantap class allows the ground to be clicked -->
       <a-box
         id="ground"
-        v-pre
         class="cantap"
         scale="1000 2 1000"
         position="0 -0.99 0"
         material="shader: shadow; transparent: true; opacity: 0.4"
         shadow
-      >
-      </a-box>
+      />
     </a-scene>
   </client-only>
 </template>

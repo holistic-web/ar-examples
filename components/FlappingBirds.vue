@@ -1,8 +1,7 @@
 <template>
-  <client-only>
+  <client-only v-pre>
     <!-- Add the menu component to the scene so it has an effect -->
     <a-scene
-      v-pre
       flapping-birds
       xrextras-loading
       xrextras-runtime-error
@@ -11,14 +10,13 @@
       xrweb
     >
       <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets v-pre>
+      <a-assets>
         <a-asset-item id="birdModel" src="/bird.gltf" />
       </a-assets>
 
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
       <a-camera
         id="camera"
-        v-pre
         position="0 8 0"
         raycaster="objects: .cantap"
         cursor="
@@ -26,7 +24,6 @@
     rayOrigin: mouse;"
       />
       <a-entity
-        v-pre
         light="
     type: directional;
     intensity: 0.8;
@@ -42,7 +39,7 @@
         position="1 4.3 2.5"
         shadow
       />
-      <a-light v-pre type="ambient" intensity="0.5" />
+      <a-light type="ambient" intensity="0.5" />
     </a-scene>
   </client-only>
 </template>
