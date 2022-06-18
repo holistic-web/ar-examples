@@ -61,6 +61,12 @@ const MENU_ITEMS = [
     scale: '0.01 0.01 0.01',
     animations: ['clip: flap-wings;'],
   },
+  {
+    name: 'overlay-demo',
+    src: '/bird.gltf',
+    scale: '0.01 0.01 0.01',
+    animations: ['clip: flap-wings;'],
+  },
 ]
 
 const landingPageComponent = {
