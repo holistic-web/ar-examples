@@ -2,7 +2,7 @@
   <client-only>
     <div>
       <!-- eslint-ignore-next-line -->
-      <overlay />
+      <overlay :project-statistics="projectStatistics" />
 
       <!-- Add the menu component to the scene so it has an effect -->
       <a-scene
@@ -82,6 +82,14 @@ const flappingBirdsComponent = {
 export default {
   name: 'OverlayDemo',
   components: { overlay },
+  data() {
+    return {
+      projectStatistics: {
+        numberOfBirds: 5,
+        awesomeStuff: 'Tis Everywhere',
+      },
+    }
+  },
   head() {
     return {
       // Scripts required by the 8th Wall Framework

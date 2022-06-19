@@ -16,6 +16,7 @@
 <script>
 export default {
   name: 'OverlayComponent',
+  props: ['project-statistics'],
   data() {
     return {
       projectName: window.location.pathname.split('/')[1],
@@ -33,6 +34,7 @@ export default {
       const closeBtn = document.getElementById('closeBtn')
       const backBtn = document.getElementById('backBtn')
       const holisticsTag = document.getElementById('holisticsTag')
+      const projectStatistics = document.getElementById('projectStatistics')
       moreInfo.addEventListener('click', function () {
         footer.style.opacity = '.9'
         footer.style.height = '50vh'
@@ -40,6 +42,7 @@ export default {
         holisticsTag.style.maxWidth = '15vw'
         closeBtn.style.visibility = 'visible'
         moreInfo.style.visibility = 'hidden'
+        projectStatistics.style.visibility = 'visible'
       })
     },
     closeBtn() {
@@ -48,6 +51,7 @@ export default {
       const backBtn = document.getElementById('backBtn')
       const moreInfo = document.getElementById('moreInfo')
       const holisticsTag = document.getElementById('holisticsTag')
+      const projectStatistics = document.getElementById('projectStatistics')
       closeBtn.addEventListener('click', function () {
         footer.style.height = '6vh'
         footer.style.opacity = '1'
@@ -55,6 +59,7 @@ export default {
         holisticsTag.style.maxWidth = '10vw'
         moreInfo.style.visibility = 'visible'
         closeBtn.style.visibility = 'hidden'
+        projectStatistics.style.visibility = 'hidden'
       })
     },
   },
@@ -131,5 +136,21 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#projectStatistics {
+  text-align: center;
+  color: white;
+  font-family: 'Nunito', monospace;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+
+  z-index: 10;
+  position: absolute;
+  top: 5vh;
+  width: 100%;
+
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 </style>
