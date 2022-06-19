@@ -58,6 +58,7 @@ export default {
         backBtn.style.maxWidth = '10vw'
         holisticsTag.style.maxWidth = '10vw'
         moreInfo.style.visibility = 'visible'
+        closeBtn.style.visibility = 'hidden'
       })
     },
   },
