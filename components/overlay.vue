@@ -33,11 +33,7 @@ export default {
       const closeBtn = document.getElementById('closeBtn')
       const backBtn = document.getElementById('backBtn')
       const holisticsTag = document.getElementById('holisticsTag')
-
-      console.log('hi')
       moreInfo.addEventListener('click', function () {
-        console.log('hey')
-        console.log('clicked')
         footer.style.opacity = '.9'
         footer.style.height = '50vh'
         backBtn.style.maxWidth = '15vw'
