@@ -2,6 +2,7 @@
   <div id="overlay" style="z-index: 2">
     <div id="header" class="header">{{ projectName }}</div>
     <div id="footer" class="footer">
+      <p id="projectStatistics">{{ projectStatistics }}</p>
       <img id="moreInfo" src="../assets/up-arrow.svg" />
       <img id="closeBtn" src="../assets/close.svg" />
       <img id="holisticsTag" src="../assets/holistics.svg" />
@@ -30,21 +31,33 @@ export default {
       const moreInfo = document.getElementById('moreInfo')
       const footer = document.getElementById('footer')
       const closeBtn = document.getElementById('closeBtn')
+      const backBtn = document.getElementById('backBtn')
+      const holisticsTag = document.getElementById('holisticsTag')
+
       console.log('hi')
       moreInfo.addEventListener('click', function () {
         console.log('hey')
         console.log('clicked')
+        footer.style.opacity = '.9'
         footer.style.height = '50vh'
-        footer.style.opacity = '.5'
+        backBtn.style.maxWidth = '15vw'
+        holisticsTag.style.maxWidth = '15vw'
         closeBtn.style.visibility = 'visible'
+        moreInfo.style.visibility = 'hidden'
       })
     },
     closeBtn() {
       const closeBtn = document.getElementById('closeBtn')
       const footer = document.getElementById('footer')
+      const backBtn = document.getElementById('backBtn')
+      const moreInfo = document.getElementById('moreInfo')
+      const holisticsTag = document.getElementById('holisticsTag')
       closeBtn.addEventListener('click', function () {
         footer.style.height = '6vh'
         footer.style.opacity = '1'
+        backBtn.style.maxWidth = '10vw'
+        holisticsTag.style.maxWidth = '10vw'
+        moreInfo.style.visibility = 'visible'
       })
     },
   },
@@ -61,7 +74,8 @@ export default {
 
   left: 50%;
   transform: translate(-50%, 0);
-  transition: 0.3s;
+  transition-property: height;
+  transition-property: opacity;
 
   background-image: url('../assets/galaxy.jpg');
   background-position: center;
@@ -71,9 +85,10 @@ export default {
 #moreInfo {
   position: absolute;
   z-index: 5;
-  left: 50%;
-  bottom: 0.5vh;
-  max-width: 20vw;
+  left: 45%;
+  bottom: 10%;
+  max-width: 10vw;
+  visibility: visible;
 }
 #closeBtn {
   visibility: hidden;
