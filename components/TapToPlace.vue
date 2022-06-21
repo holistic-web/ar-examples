@@ -1,13 +1,14 @@
 <template>
-  <client-only v-pre>
-    <!-- Add the tap-place component to the scene so it has an effect -->
-    <a-scene
-      tap-place
-      xrextras-loading
-      xrextras-runtime-error
-      renderer="colorManagement:true"
-      vr-mode-ui="enabled: false"
-      xrweb="
+  <default-layout>
+    <client-only v-pre>
+      <!-- Add the tap-place component to the scene so it has an effect -->
+      <a-scene
+        tap-place
+        xrextras-loading
+        xrextras-runtime-error
+        renderer="colorManagement:true"
+        vr-mode-ui="enabled: false"
+        xrweb="
   allowedDevices: any;
   defaultEnvironmentFogIntensity: 0.5;
   defaultEnvironmentFloorTexture: #groundTex;
@@ -15,26 +16,26 @@
   defaultEnvironmentSkyBottomColor: #B4C4CC;
   defaultEnvironmentSkyTopColor: #5ac8fa;
   defaultEnvironmentSkyGradientStrength: 0.5;"
-    >
-      <!-- TODO add this back arrow -->
-      <!-- <img id="backButton" src="../assets/back-arrow.svg" /> -->
+      >
+        <!-- TODO add this back arrow -->
+        <!-- <img id="backButton" src="../assets/back-arrow.svg" /> -->
 
-      <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets>
-        <img id="groundTex" src="/sand.jpg" />
-        <a-asset-item id="cactusModel" src="/cactus.glb"></a-asset-item>
-      </a-assets>
-      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
-      <a-camera
-        id="camera"
-        position="0 8 0"
-        raycaster="objects: .cantap"
-        cursor="
+        <!-- We can define assets here to be loaded when A-Frame initializes -->
+        <a-assets>
+          <img id="groundTex" src="/sand.jpg" />
+          <a-asset-item id="cactusModel" src="/cactus.glb"></a-asset-item>
+        </a-assets>
+        <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
+        <a-camera
+          id="camera"
+          position="0 8 0"
+          raycaster="objects: .cantap"
+          cursor="
     fuse: false;
     rayOrigin: mouse;"
-      />
-      <a-entity
-        light="
+        />
+        <a-entity
+          light="
     type: directional;
     intensity: 0.8;
     castShadow: true;
@@ -45,22 +46,26 @@
     shadowCameraRight: 40;
     shadowCameraLeft: -40;
     target: #camera"
-        xrextras-attach="target: camera; offset: 8 15 4"
-        position="1 4.3 2.5"
-        shadow
-      />
-      <a-light type="ambient" intensity="0.5" />
-      <!-- Adding the cantap class allows the ground to be clicked -->
-      <a-box
-        id="ground"
-        class="cantap"
-        scale="1000 2 1000"
-        position="0 -0.99 0"
-        material="shader: shadow; transparent: true; opacity: 0.4"
-        shadow
-      />
-    </a-scene>
-  </client-only>
+          xrextras-attach="target: camera; offset: 8 15 4"
+          position="1 4.3 2.5"
+          shadow
+        />
+        <a-light type="ambient" intensity="0.5" />
+        <!-- Adding the cantap class allows the ground to be clicked -->
+        <a-box
+          id="ground"
+          class="cantap"
+          scale="1000 2 1000"
+          position="0 -0.99 0"
+          material="shader: shadow; transparent: true; opacity: 0.4"
+          shadow
+        />
+      </a-scene>
+    </client-only>
+    <template #controls>
+      <p>Tap the floor to start your garden 🌵</p>
+    </template>
+  </default-layout>
 </template>
 
 <script>

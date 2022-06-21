@@ -1,27 +1,28 @@
 <template>
-  <client-only v-pre>
-    <!-- Add floating-menu attribute to the scene  -->
-    <a-scene
-      floating-menu
-      xrextras-loading
-      xrextras-runtime-error
-      renderer="colorManagement:true"
-      vr-mode-ui="enabled: false"
-      xrweb
-    >
-      <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets id="menuAssets" />
-      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
-      <a-camera
-        id="camera"
-        position="0 8 0"
-        raycaster="objects: .cantap"
-        cursor="
+  <default-layout>
+    <client-only v-pre>
+      <!-- Add floating-menu attribute to the scene  -->
+      <a-scene
+        floating-menu
+        xrextras-loading
+        xrextras-runtime-error
+        renderer="colorManagement:true"
+        vr-mode-ui="enabled: false"
+        xrweb
+      >
+        <!-- We can define assets here to be loaded when A-Frame initializes -->
+        <a-assets id="menuAssets" />
+        <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
+        <a-camera
+          id="camera"
+          position="0 8 0"
+          raycaster="objects: .cantap"
+          cursor="
     fuse: false;
     rayOrigin: mouse;"
-      />
-      <a-entity
-        light="
+        />
+        <a-entity
+          light="
     type: directional;
     intensity: 0.8;
     castShadow: true;
@@ -32,13 +33,14 @@
     shadowCameraRight: 40;
     shadowCameraLeft: -40;
     target: #camera"
-        xrextras-attach="target: camera; offset: 8 15 4"
-        position="1 4.3 2.5"
-        shadow
-      />
-      <a-light type="ambient" intensity="0.5" />
-    </a-scene>
-  </client-only>
+          xrextras-attach="target: camera; offset: 8 15 4"
+          position="1 4.3 2.5"
+          shadow
+        />
+        <a-light type="ambient" intensity="0.5" />
+      </a-scene>
+    </client-only>
+  </default-layout>
 </template>
 
 <script>

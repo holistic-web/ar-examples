@@ -1,7 +1,6 @@
 <template>
   <div id="landingPage">
     <floating-menu v-if="isMenuVisible" :menu-items="menuItems" />
-
     <flapping-birds v-if="$route.query.show === 'flapping-birds'" />
     <tap-to-place v-if="$route.query.show === 'tap-to-place'" />
   </div>
@@ -14,8 +13,6 @@ export default {
   name: 'LandingPage',
 
   data: () => ({
-    shownComponent: null,
-
     menuItems: [
       {
         name: 'tap-to-place',
@@ -74,11 +71,4 @@ export default {
 </script>
 
 <style lang="scss">
-a-scene {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 </style>
