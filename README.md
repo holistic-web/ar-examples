@@ -3,11 +3,12 @@
 A collection of examples of web AR fundamentals, powered by Niantic's [8th Wall](https://www.8thwall.com/) framework. The examples here are meant to be used as components in future projects.
 
 ## Short Term TODO:
-
-- demonstrate any AR working through nuxt
-- add deployment to augmented-reality.web.app through firebase
-- add main website to navigate between examples
-- add first example
+- ~~demonstrate any AR working through nuxt~~
+- ~~add deployment to augmented-reality.web.app through firebase~~
+- ~~add main website to navigate between examples~~
+- ~~add first example~~
+- add another project
+- replace this document with a more relevant readme
 
 ## How it Works
 
