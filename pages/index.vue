@@ -1,8 +1,8 @@
 <template>
   <div id="landingPage">
-    <floating-menu v-if="isMenuVisible" :menu-items="menuItems" />
-    <flapping-birds v-if="$route.query.show === 'flapping-birds'" />
-    <tap-to-place v-if="$route.query.show === 'tap-to-place'" />
+    <floating-menu v-if="visibleComponent === 'menu'" :menu-items="menuItems" />
+    <flapping-birds v-if="visibleComponent === 'flapping-birds'" />
+    <tap-to-place v-if="visibleComponent === 'tap-to-place'" />
   </div>
 </template>
 
@@ -53,8 +53,9 @@ export default {
   },
 
   computed: {
-    isMenuVisible() {
-      return !this.$route.query.show
+    visibleComponent() {
+      if (this.$route.query.show) return this.$route.query.show
+      return 'menu'
     },
   },
 
