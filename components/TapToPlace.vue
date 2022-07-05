@@ -17,13 +17,11 @@
   defaultEnvironmentSkyTopColor: #5ac8fa;
   defaultEnvironmentSkyGradientStrength: 0.5;"
       >
-        <!-- TODO add this back arrow -->
-        <!-- <img id="backButton" src="../assets/back-arrow.svg" /> -->
-
         <!-- We can define assets here to be loaded when A-Frame initializes -->
+        <!-- TODO: investigate why sand isn't working as intended (i.e. at whatsovever)-->
         <a-assets>
-          <img id="groundTex" src="/sand.jpg" />
-          <a-asset-item id="cactusModel" src="/cactus.glb"></a-asset-item>
+          <img id="groundTex" src="/cactus/sand.jpg" />
+          <a-asset-item id="cactusModel" src="/cactus/cactus.glb" />
         </a-assets>
         <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
         <a-camera

@@ -3,6 +3,7 @@
     <floating-menu v-if="visibleComponent === 'menu'" :menu-items="menuItems" />
     <flapping-birds v-if="visibleComponent === 'flapping-birds'" />
     <tap-to-place v-if="visibleComponent === 'tap-to-place'" />
+    <dino-rex v-if="visibleComponent === 'dino-rex'" />
   </div>
 </template>
 
@@ -16,14 +17,20 @@ export default {
     menuItems: [
       {
         name: 'tap-to-place',
-        src: '/cactus.glb',
+        src: '/cactus/cactus.glb',
         scale: '7 7 7',
       },
       {
         name: 'flapping-birds',
-        src: '/bird.gltf',
+        src: '/bird/bird.gltf',
         scale: '0.01 0.01 0.01',
         animations: ['clip: flap-wings;'],
+      },
+      {
+        name: 'dino-rex',
+        src: '/dino/dino.gltf',
+        scale: '1 1 1',
+        // TODO: add an animation to the dino?
       },
     ],
   }),

@@ -12,7 +12,7 @@
       >
         <!-- We can define assets here to be loaded when A-Frame initializes -->
         <a-assets>
-          <a-asset-item id="birdModel" src="/bird.gltf" />
+          <a-asset-item id="birdModel" src="/bird/bird.gltf" />
         </a-assets>
 
         <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->

@@ -18,21 +18,21 @@
           position="0 8 0"
           raycaster="objects: .cantap"
           cursor="
-    fuse: false;
-    rayOrigin: mouse;"
+            fuse: false;
+            rayOrigin: mouse;"
         />
         <a-entity
           light="
-    type: directional;
-    intensity: 0.8;
-    castShadow: true;
-    shadowMapHeight:2048;
-    shadowMapWidth:2048;
-    shadowCameraTop: 40;
-    shadowCameraBottom: -40;
-    shadowCameraRight: 40;
-    shadowCameraLeft: -40;
-    target: #camera"
+            type: directional;
+            intensity: 0.8;
+            castShadow: true;
+            shadowMapHeight:2048;
+            shadowMapWidth:2048;
+            shadowCameraTop: 40;
+            shadowCameraBottom: -40;
+            shadowCameraRight: 40;
+            shadowCameraLeft: -40;
+            target: #camera"
           xrextras-attach="target: camera; offset: 8 15 4"
           position="1 4.3 2.5"
           shadow
