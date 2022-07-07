@@ -58,6 +58,8 @@ function getFloatingMenuComponent(menuItems, depth, width) {
         asset.setAttribute('src', item.src)
         assets.appendChild(asset)
 
+        const positionX = (width * (i + 1)) / menuItems.length - width / 2
+
         // set attributes
         const entity = document.createElement('a-entity')
         const attributes = {
@@ -65,7 +67,7 @@ function getFloatingMenuComponent(menuItems, depth, width) {
           'gltf-model': `#${item.name}-asset`,
           scale: '0.0001 0.0001 0.0001',
           shadow: { receive: false },
-          position: `${i % 2 === 0 ? -width / 2 : width / 2} 0 ${depth}`,
+          position: `${positionX} 0 ${depth}`,
           class: 'cantap',
           visible: false,
         }

@@ -18,18 +18,18 @@ export default {
       {
         name: 'tap-to-place',
         src: '/cactus/cactus.glb',
-        scale: '7 7 7',
+        scale: '5 5 5',
       },
       {
         name: 'flapping-birds',
         src: '/bird/bird.gltf',
-        scale: '0.01 0.01 0.01',
+        scale: '0.005 0.005 0.005',
         animations: ['clip: flap-wings;'],
       },
       {
         name: 'dino-rex',
         src: '/dino/dino.gltf',
-        scale: '1 1 1',
+        scale: '2 2 2',
         // TODO: add an animation to the dino?
       },
     ],
