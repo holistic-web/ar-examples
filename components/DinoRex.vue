@@ -76,12 +76,10 @@ export default {
     },
   }),
   mounted() {
-    console.log('mounting')
     this.drawDino()
   },
   methods: {
     drawDino() {
-      console.log('drawing dino')
       if (this.entities.dino) {
         this.entities.dino.parentNode.removeChild(this.entities.dino)
       }
@@ -102,7 +100,6 @@ export default {
       this.entities.dino.setAttribute('shadow', 'receive: false')
       this.entities.dino.setAttribute('position', '0 0 -10')
       sceneEl.appendChild(this.entities.dino)
-      console.log('dino drawn')
     },
   },
 }

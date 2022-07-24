@@ -14,6 +14,7 @@ export default {
   name: 'LandingPage',
 
   data: () => ({
+    visibleComponent: 'menu',
     menuItems: [
       {
         name: 'tap-to-place',
@@ -58,11 +59,14 @@ export default {
       ],
     }
   },
-
-  computed: {
-    visibleComponent() {
-      if (this.$route.query.show) return this.$route.query.show
-      return 'menu'
+  watch: {
+    '$route.query.show'(newValue) {
+      const match = this.menuItems.find((item) => item.name === newValue)
+      if (match) {
+        this.visibleComponent = newValue
+      } else {
+        this.visibleComponent = 'menu'
+      }
     },
   },
 
