@@ -70,9 +70,13 @@
     </client-only>
 
     <template #controls>
-      <img id="recenterBtn" src="/dino/reset.svg" />
-      <h3>DRAG HERE TO MOVE (and pinch to scale)</h3>
-      <img id="actionBtn" src="/dino/oh.svg" />
+      <img
+        id="recenterBtn"
+        class="DinoRex__controlButton"
+        src="/dino/reset.svg"
+      />
+      <h3 class="DinoRex__controlText">DRAG HERE TO MOVE</h3>
+      <img id="actionBtn" class="DinoRex__controlButton" src="/dino/oh.svg" />
     </template>
   </default-layout>
 </template>
@@ -86,4 +90,15 @@ export default {
 </script>
 
 <style lang="scss">
+.DinoRex {
+  &__controlButton {
+    max-height: 50px;
+  }
+
+  &__controlText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+}
 </style>
