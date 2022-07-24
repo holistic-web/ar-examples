@@ -53,7 +53,7 @@
           animation-mixer="clip: idle; loop: repeat"
           class="cantap"
           xrextras-pinch-scale
-          scale="1 1 1"
+          scale="2 2 2"
           shadow="receive: false"
           position="0 0 -10"
         />
