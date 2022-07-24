@@ -30,7 +30,7 @@ export default {
         name: 'dino-rex',
         src: '/dino/dino.gltf',
         scale: '2 2 2',
-        // TODO: add an animation to the dino?
+        animations: ['clip: idle;'],
       },
     ],
   }),
