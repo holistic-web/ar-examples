@@ -41,22 +41,8 @@
           position="1 4.3 2.5"
           shadow
         />
-        <a-light type="ambient" intensity="0.5" />
 
-        <a-entity
-          id="model"
-          gltf-model="#dinoModel"
-          character-move
-          character-recenter
-          character-action
-          character-finish-animation
-          animation-mixer="clip: idle; loop: repeat"
-          class="cantap"
-          xrextras-pinch-scale
-          scale="2 2 2"
-          shadow="receive: false"
-          position="0 0 -10"
-        />
+        <a-light type="ambient" intensity="0.5" />
 
         <a-plane
           id="ground"
@@ -84,8 +70,38 @@
 <script>
 export default {
   name: 'DinoRex',
-
-  mounted() {},
+  data: () => ({
+    entities: {
+      dino: null,
+    },
+  }),
+  methods: {
+    drawDino() {
+      if (this.entities.dino) {
+        this.entities.dino.parentNode.removeChild(this.entities.dino)
+      }
+      const sceneEl = document.getElementById('DinoRexScene')
+      this.entities.dino = document.createElement('a-entity')
+      this.entities.dino.setAttribute('gltf-model', '#dinoModel')
+      this.entities.dino.setAttribute('character-move', '')
+      this.entities.dino.setAttribute('character-recenter', '')
+      this.entities.dino.setAttribute('character-action', '')
+      this.entities.dino.setAttribute('character-finish-animation', '')
+      this.entities.dino.setAttribute(
+        'animation-mixer',
+        'clip: idle; loop: repeat'
+      )
+      this.entities.dino.setAttribute('class', 'cantap')
+      this.entities.dino.setAttribute('xrextras-pinch-scale', '')
+      this.entities.dino.setAttribute('scale', '1 1 1')
+      this.entities.dino.setAttribute('shadow', 'receive: false')
+      this.entities.dino.setAttribute('position', '0 0 -10')
+      sceneEl.appendChild(this.entities.dino)
+    },
+    mounted() {
+      this.drawDino()
+    },
+  },
 }
 </script>
 
